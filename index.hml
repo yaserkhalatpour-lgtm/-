@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>حل تشریحی سوالات کنکور تجربی</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #ecfeff
+                );
+
+            color: #1e293b;
+
+            min-height: 100vh;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172554,
+                    #1d4ed8,
+                    #0891b2
+                );
+
+            color: white;
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,.18);
+        }
+
+
+        header h1 {
+
+            font-size: 32px;
+
+            margin-bottom: 15px;
+        }
+
+
+        header h2 {
+
+            font-size: 21px;
+
+            font-weight: normal;
+
+            opacity: .95;
+        }
+
+
+        header p {
+
+            margin-top: 15px;
+
+            font-size: 15px;
+
+            opacity: .9;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+
+            width: min(1200px, 94%);
+
+            margin: 35px auto;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 28px;
+
+            margin-bottom: 28px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15,23,42,.08);
+        }
+
+
+        .welcome h2 {
+
+            color: #1d4ed8;
+
+            margin-bottom: 12px;
+
+            font-size: 24px;
+        }
+
+
+        .welcome p {
+
+            color: #64748b;
+
+            line-height: 2;
+
+            font-size: 15px;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+
+            margin-bottom: 30px;
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 17px 20px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background: white;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.08);
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+
+        .search-box input:focus {
+
+            box-shadow:
+                0 0 0 3px
+                #93c5fd;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .section {
+
+            background: white;
+
+            border-radius: 23px;
+
+            margin-bottom: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 28px
+                rgba(15,23,42,.09);
+        }
+
+
+        .section-header {
+
+            padding: 24px;
+
+            color: white;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            user-select: none;
+        }
+
+
+        .section-header h2 {
+
+            font-size: 23px;
+        }
+
+
+        .arrow {
+
+            font-size: 23px;
+
+            transition: .3s;
+        }
+
+
+        .section-content {
+
+            padding: 25px;
+
+            display: none;
+        }
+
+
+        .section.open
+        .section-content {
+
+            display: block;
+        }
+
+
+        .section.open
+        .arrow {
+
+            transform: rotate(180deg);
+        }
+
+
+        /* رنگ پایه‌ها */
+
+        .tenth .section-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+        }
+
+
+        .eleventh .section-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #6d28d9
+                );
+        }
+
+
+        .twelfth .section-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #059669,
+                    #047857
+                );
+        }
+
+
+        .final .section-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ea580c,
+                    #c2410c
+                );
+        }
+
+
+        .konkoor .section-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dc2626,
+                    #991b1b
+                );
+        }
+
+
+        /* ================= CHAPTERS ================= */
+
+        .chapters {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+
+            gap: 18px;
+        }
+
+
+        .chapter {
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+
+        .chapter:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,.10);
+        }
+
+
+        .chapter-title {
+
+            padding: 17px;
+
+            background: #eff6ff;
+
+            color: #1e40af;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .eleventh
+        .chapter-title {
+
+            background: #f5f3ff;
+
+            color: #6d28d9;
+        }
+
+
+        .twelfth
+        .chapter-title {
+
+            background: #ecfdf5;
+
+            color: #047857;
+        }
+
+
+        .chapter-arrow {
+
+            transition: .3s;
+        }
+
+
+        .chapter.open
+        .chapter-arrow {
+
+            transform:
+                rotate(180deg);
+        }
+
+
+        .chapter-files {
+
+            padding: 12px;
+
+            display: none;
+        }
+
+
+        .chapter.open
+        .chapter-files {
+
+            display: block;
+        }
+
+
+        /* ================= PDF CARD ================= */
+
+        .pdf-item {
+
+            background: white;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 14px;
+
+            padding: 13px;
+
+            margin-bottom: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            transition: .2s;
+        }
+
+
+        .pdf-item:hover {
+
+            background: #f8fafc;
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        .pdf-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fee2e2;
+
+            font-size: 22px;
+
+            flex-shrink: 0;
+        }
+
+
+        .pdf-name {
+
+            flex: 1;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        .pdf-number {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-weight: normal;
+        }
+
+
+        .view-btn {
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            padding:
+                9px 14px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            white-space: nowrap;
+
+            transition: .2s;
+        }
+
+
+        .view-btn:hover {
+
+            transform:
+                scale(1.04);
+        }
+
+
+        /* ================= SIMPLE SECTIONS ================= */
+
+        .simple-files {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 12px;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            padding: 18px;
+
+            font-size: 14px;
+        }
+
+
+        .loading {
+
+            text-align: center;
+
+            color: #64748b;
+
+            padding: 20px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 35px 15px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 2;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 35px 15px;
+            }
+
+
+            header h1 {
+
+                font-size: 24px;
+            }
+
+
+            header h2 {
+
+                font-size: 17px;
+            }
+
+
+            .section-header h2 {
+
+                font-size: 18px;
+            }
+
+
+            .chapters {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .pdf-item {
+
+                align-items: flex-start;
+            }
+
+
+            .view-btn {
+
+                padding:
+                    8px 10px;
+
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <h1>
+        📚 حل تشریحی سوالات کنکور تجربی
+    </h1>
+
+    <h2>
+        دکتر یاسر خلعت پور
+    </h2>
+
+    <p>
+        مجموعه جامع جزوات، آموزش‌ها و سوالات تشریحی ریاضی
+    </p>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <div class="welcome">
+
+        <h2>
+            🌟 پایگاه جامع آموزش ریاضی
+        </h2>
+
+        <p>
+
+            جزوات و فایل‌های آموزشی
+            ریاضی دهم، یازدهم و دوازدهم تجربی،
+            امتحان نهایی و کنکور
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 جستجو در جزوات..."
+        >
+
+    </div>
+
+
+
+    <!-- ================= دهم ================= -->
+
+    <section class="section tenth open">
+
+        <div
+            class="section-header"
+            onclick="toggleSection(this)"
+        >
+
+            <h2>
+                📘 ریاضی دهم تجربی
+            </h2>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </div>
+
+
+        <div class="section-content">
+
+            <div
+                class="chapters"
+                id="tenth-chapters"
+            >
+
+                <div class="loading">
+                    در حال دریافت فایل‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= یازدهم ================= -->
+
+    <section class="section eleventh">
+
+        <div
+            class="section-header"
+            onclick="toggleSection(this)"
+        >
+
+            <h2>
+                📕 ریاضی یازدهم تجربی
+            </h2>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </div>
+
+
+        <div class="section-content">
+
+            <div
+                class="chapters"
+                id="eleventh-chapters"
+            >
+
+                <div class="loading">
+                    در حال دریافت فایل‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= دوازدهم ================= -->
+
+    <section class="section twelfth">
+
+        <div
+            class="section-header"
+            onclick="toggleSection(this)"
+        >
+
+            <h2>
+                📗 ریاضی دوازدهم تجربی
+            </h2>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </div>
+
+
+        <div class="section-content">
+
+            <div
+                class="chapters"
+                id="twelfth-chapters"
+            >
+
+                <div class="loading">
+                    در حال دریافت فایل‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= امتحان نهایی ================= -->
+
+    <section class="section final">
+
+        <div
+            class="section-header"
+            onclick="toggleSection(this)"
+        >
+
+            <h2>
+                📝 امتحان نهایی
+            </h2>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </div>
+
+
+        <div class="section-content">
+
+            <div
+                class="simple-files"
+                id="final-files"
+            >
+
+                <div class="loading">
+                    در حال دریافت فایل‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= کنکور ================= -->
+
+    <section class="section konkoor">
+
+        <div
+            class="section-header"
+            onclick="toggleSection(this)"
+        >
+
+            <h2>
+                🎯 کنکور
+            </h2>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </div>
+
+
+        <div class="section-content">
+
+            <div
+                class="simple-files"
+                id="konkoor-files"
+            >
+
+                <div class="loading">
+                    در حال دریافت فایل‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © دکتر یاسر خلعت پور
+
+    <br>
+
+    پایگاه جامع آموزش ریاضی
+
+</footer>
+
+
+
+<script>
+
+
+/* ==================================================
+   تنظیمات GitHub
+   ==================================================
+
+   فقط این دو مورد را یک بار وارد کن.
+
+   مثال:
+
+   const GITHUB_OWNER = "yaser123";
+   const GITHUB_REPO = "math-site";
+
+================================================== */
+
+
+const GITHUB_OWNER =
+    "YOUR-GITHUB-USERNAME";
+
+
+const GITHUB_REPO =
+    "YOUR-REPOSITORY-NAME";
+
+
+
+/* ==================================================
+   فصل‌ها
+   ================================================== */
+
+
+const chapters = [
+
+    {
+        folder: "chapter1",
+        title: "فصل اول"
+    },
+
+    {
+        folder: "chapter2",
+        title: "فصل دوم"
+    },
+
+    {
+        folder: "chapter3",
+        title: "فصل سوم"
+    },
+
+    {
+        folder: "chapter4",
+        title: "فصل چهارم"
+    },
+
+    {
+        folder: "chapter5",
+        title: "فصل پنجم"
+    },
+
+    {
+        folder: "chapter6",
+        title: "فصل ششم"
+    },
+
+    {
+        folder: "chapter7",
+        title: "فصل هفتم"
+    }
+
+];
+
+
+
+/* ==================================================
+   باز و بسته کردن بخش اصلی
+   ================================================== */
+
+
+function toggleSection(header) {
+
+    const section =
+        header.parentElement;
+
+    section.classList.toggle("open");
+
+}
+
+
+
+/* ==================================================
+   باز و بسته کردن فصل
+   ================================================== */
+
+
+function toggleChapter(title) {
+
+    const chapter =
+        title.parentElement;
+
+    chapter.classList.toggle("open");
+
+}
+
+
+
+/* ==================================================
+   دریافت فایل‌های GitHub
+   ================================================== */
+
+
+async function getFiles(folder) {
+
+    const url =
+        `https://api.github.com/repos/` +
+        `${GITHUB_OWNER}/${GITHUB_REPO}` +
+        `/contents/${folder}`;
+
+
+    try {
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            return [];
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!Array.isArray(data)) {
+
+            return [];
+
+        }
+
+
+        /*
+           فقط PDFها انتخاب می‌شوند.
+           اسم فایل اصلاً مهم نیست.
+        */
+
+
+        return data.filter(file => {
+
+            return (
+
+                file.type === "file"
+
+                &&
+
+                file.name
+                    .toLowerCase()
+                    .endsWith(".pdf")
+
+            );
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+
+/* ==================================================
+   ساخت کارت PDF
+   ================================================== */
+
+
+function createPDFItem(file, number) {
+
+    const item =
+        document.createElement("div");
+
+
+    item.className =
+        "pdf-item";
+
+
+    item.innerHTML = `
+
+        <div class="pdf-icon">
+            📄
+        </div>
+
+
+        <div class="pdf-name">
+
+            جزوه ${number}
+
+            <span class="pdf-number">
+                فایل PDF
+            </span>
+
+        </div>
+
+
+        <a
+            class="view-btn"
+            href="${file.download_url}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            مشاهده
+        </a>
+
+    `;
+
+
+    return item;
+
+}
+
+
+
+/* ==================================================
+   بارگذاری یک پایه تحصیلی
+   ================================================== */
+
+
+async function loadGrade(grade) {
+
+
+    const container =
+        document.getElementById(
+            `${grade}-chapters`
+        );
+
+
+    container.innerHTML = "";
+
+
+    for (
+        let i = 0;
+        i < chapters.length;
+        i++
+    ) {
+
+
+        const chapter =
+            chapters[i];
+
+
+        const chapterBox =
+            document.createElement("div");
+
+
+        chapterBox.className =
+            "chapter";
+
+
+        chapterBox.innerHTML = `
+
+            <div
+                class="chapter-title"
+                onclick="toggleChapter(this)"
+            >
+
+                <span>
+                    📖 ${chapter.title}
+                </span>
+
+                <span class="chapter-arrow">
+                    ▼
+                </span>
+
+            </div>
+
+
+            <div class="chapter-files">
+
+                <div class="loading">
+                    در حال دریافت...
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            chapterBox
+        );
+
+
+        const files =
+            await getFiles(
+                `${grade}/${chapter.folder}`
+            );
+
+
+        const filesContainer =
+            chapterBox.querySelector(
+                ".chapter-files"
+            );
+
+
+        filesContainer.innerHTML = "";
+
+
+        if (files.length === 0) {
+
+            filesContainer.innerHTML = `
+
+                <div class="empty">
+
+                    📂 هنوز جزوه‌ای
+                    در این فصل قرار نگرفته است.
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+
+            /*
+              فایل‌ها به صورت خودکار
+              جزوه ۱، جزوه ۲، جزوه ۳...
+              شماره‌گذاری می‌شوند.
+            */
+
+
+            files.forEach(
+                (file, index) => {
+
+                    filesContainer.appendChild(
+
+                        createPDFItem(
+                            file,
+                            index + 1
+                        )
+
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+}
+
+
+
+/* ==================================================
+   بخش امتحان نهایی و کنکور
+   ================================================== */
+
+
+async function loadSimpleSection(
+    folder,
+    elementId
+) {
+
+
+    const container =
+        document.getElementById(
+            elementId
+        );
+
+
+    const files =
+        await getFiles(folder);
+
+
+    container.innerHTML = "";
+
+
+    if (files.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                📂 هنوز فایلی اضافه نشده است.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    files.forEach(
+        (file, index) => {
+
+            container.appendChild(
+
+                createPDFItem(
+                    file,
+                    index + 1
+                )
+
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   جستجو
+   ================================================== */
+
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function () {
+
+
+            const query =
+                this.value
+                    .trim()
+                    .toLowerCase();
+
+
+            document
+                .querySelectorAll(
+                    ".pdf-item"
+                )
+                .forEach(item => {
+
+
+                    const text =
+                        item
+                            .querySelector(
+                                ".pdf-name"
+                            )
+                            .textContent
+                            .toLowerCase();
+
+
+                    if (
+                        query === ""
+                        ||
+                        text.includes(query)
+                    ) {
+
+                        item.style.display =
+                            "flex";
+
+                    }
+
+                    else {
+
+                        item.style.display =
+                            "none";
+
+                    }
+
+                });
+
+        }
+    );
+
+
+
+/* ==================================================
+   اجرای سایت
+   ================================================== */
+
+
+async function initializeSite() {
+
+
+    await Promise.all([
+
+        loadGrade("tenth"),
+
+        loadGrade("eleventh"),
+
+        loadGrade("twelfth"),
+
+        loadSimpleSection(
+            "final",
+            "final-files"
+        ),
+
+        loadSimpleSection(
+            "konkoor",
+            "konkoor-files"
+        )
+
+    ]);
+
+}
+
+
+initializeSite();
+
+
+</script>
+
+
+</body>
+
+</html>
