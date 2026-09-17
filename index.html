@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سامانه جزوات ریاضی</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma, Arial, sans-serif;
+    background:linear-gradient(135deg,#eef4ff,#f8fbff,#eef8f5);
+    color:#172033;
+    min-height:100vh;
+}
+
+/* =========================
+   صفحه ورود
+========================= */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at top right,#dbeafe 0,#eef4ff 35%,transparent 60%),
+        radial-gradient(circle at bottom left,#d1fae5 0,#f4f9ff 40%,transparent 65%);
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:rgba(255,255,255,.96);
+    border-radius:28px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(30,60,100,.18);
+    border:1px solid rgba(255,255,255,.8);
+}
+
+.login-icon{
+    width:82px;
+    height:82px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:38px;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.login-box h1{
+    font-size:25px;
+    margin-bottom:10px;
+    color:#172554;
+}
+
+.login-box p{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:28px;
+    line-height:1.8;
+}
+
+.password-wrapper{
+    position:relative;
+    margin-bottom:15px;
+}
+
+.password-wrapper input{
+    width:100%;
+    height:54px;
+    border:2px solid #e2e8f0;
+    border-radius:15px;
+    padding:0 18px;
+    font-size:18px;
+    text-align:center;
+    outline:none;
+    transition:.25s;
+    background:#f8fafc;
+}
+
+.password-wrapper input:focus{
+    border-color:#2563eb;
+    background:white;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.login-btn{
+    width:100%;
+    height:54px;
+    border:0;
+    border-radius:15px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 8px 20px rgba(37,99,235,.22);
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(37,99,235,.3);
+}
+
+.error-message{
+    display:none;
+    color:#dc2626;
+    background:#fef2f2;
+    border:1px solid #fecaca;
+    border-radius:12px;
+    padding:10px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.login-footer{
+    margin-top:25px;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+/* =========================
+   سایت اصلی
+========================= */
+
+#mainSite{
+    display:none;
+}
+
+header{
+    background:linear-gradient(135deg,#172554,#2563eb,#4f46e5);
+    color:white;
+    padding:45px 20px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(15,23,42,.18);
+}
+
+header h1{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+header p{
+    font-size:16px;
+    opacity:.9;
+}
+
+.container{
+    width:min(1200px,94%);
+    margin:35px auto;
+}
+
+.search-box{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:35px;
+    box-shadow:0 8px 30px rgba(15,23,42,.08);
+}
+
+.search-box input{
+    width:100%;
+    height:50px;
+    border:2px solid #e2e8f0;
+    border-radius:14px;
+    padding:0 18px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#2563eb;
+}
+
+/* بخش پایه */
+
+.grade-section{
+    margin-bottom:45px;
+}
+
+.grade-title{
+    color:white;
+    border-radius:18px;
+    padding:20px 25px;
+    margin-bottom:22px;
+    font-size:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+
+.tenth-title{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.eleventh-title{
+    background:linear-gradient(135deg,#059669,#10b981);
+}
+
+.twelfth-title{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+}
+
+.final-title{
+    background:linear-gradient(135deg,#ea580c,#f97316);
+}
+
+.konkoor-title{
+    background:linear-gradient(135deg,#be123c,#e11d48);
+}
+
+/* فصل */
+
+.chapter{
+    background:white;
+    border-radius:20px;
+    margin-bottom:22px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(15,23,42,.07);
+}
+
+.chapter-header{
+    padding:17px 22px;
+    background:#f8fafc;
+    border-bottom:1px solid #e2e8f0;
+    font-size:18px;
+    font-weight:bold;
+    color:#1e293b;
+}
+
+.pdf-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.pdf-card{
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:20px 15px;
+    text-align:center;
+    background:linear-gradient(180deg,#ffffff,#f8fafc);
+    transition:.25s;
+}
+
+.pdf-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(15,23,42,.1);
+    border-color:#93c5fd;
+}
+
+.pdf-icon{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.pdf-name{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:14px;
+    color:#334155;
+}
+
+.view-btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    padding:10px 24px;
+    border-radius:11px;
+    font-size:14px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.view-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* پیام نبودن فایل */
+
+.empty-message{
+    padding:25px;
+    text-align:center;
+    color:#94a3b8;
+}
+
+/* خروج */
+
+.logout-area{
+    text-align:center;
+    margin:35px 0;
+}
+
+.logout-btn{
+    border:0;
+    background:#ef4444;
+    color:white;
+    padding:11px 25px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+}
+
+/* فوتر */
+
+footer{
+    background:#172033;
+    color:#cbd5e1;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:50px;
+}
+
+footer strong{
+    color:white;
+}
+
+footer a{
+    color:#93c5fd;
+    text-decoration:none;
+}
+
+/* موبایل */
+
+@media(max-width:600px){
+
+    header{
+        padding:35px 15px;
+    }
+
+    header h1{
+        font-size:25px;
+    }
+
+    .grade-title{
+        font-size:20px;
+    }
+
+    .login-box{
+        padding:32px 20px;
+    }
+
+    .pdf-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     صفحه ورود
+===================================================== -->
+
+<div id="loginPage">
+
+    <div class="login-box">
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+        <h1>ورود به سامانه جزوات ریاضی</h1>
+
+        <p>
+            برای دسترسی به جزوات، رمز عبور خود را وارد کنید.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="password-wrapper">
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="رمز عبور"
+                    autocomplete="off"
+                >
+            </div>
+
+            <button class="login-btn" type="submit">
+                ورود به سایت
+            </button>
+
+            <div id="errorMessage" class="error-message">
+                رمز عبور نادرست است.
+            </div>
+
+        </form>
+
+        <div class="login-footer">
+            سامانه آموزش ریاضی
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     سایت اصلی
+===================================================== -->
+
+<div id="mainSite">
+
+<header>
+
+    <h1>📚 سامانه جزوات ریاضی</h1>
+
+    <p>
+        جزوات آموزشی، امتحان نهایی و کنکور
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- جستجو -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 جستجو در جزوات..."
+        >
+
+    </div>
+
+
+    <!-- ================= دهم ================= -->
+
+    <section class="grade-section">
+
+        <div class="grade-title tenth-title">
+            📘 ریاضی دهم
+        </div>
+
+        <div id="tenth"></div>
+
+    </section>
+
+
+    <!-- ================= یازدهم ================= -->
+
+    <section class="grade-section">
+
+        <div class="grade-title eleventh-title">
+            📗 ریاضی یازدهم
+        </div>
+
+        <div id="eleventh"></div>
+
+    </section>
+
+
+    <!-- ================= دوازدهم ================= -->
+
+    <section class="grade-section">
+
+        <div class="grade-title twelfth-title">
+            📕 ریاضی دوازدهم
+        </div>
+
+        <div id="twelfth"></div>
+
+    </section>
+
+
+    <!-- ================= فاینال ================= -->
+
+    <section class="grade-section">
+
+        <div class="grade-title final-title">
+            📝 امتحان نهایی
+        </div>
+
+        <div id="final"></div>
+
+    </section>
+
+
+    <!-- ================= کنکور ================= -->
+
+    <section class="grade-section">
+
+        <div class="grade-title konkoor-title">
+            🎯 کنکور
+        </div>
+
+        <div id="konkoor"></div>
+
+    </section>
+
+
+    <div class="logout-area">
+
+        <button class="logout-btn" onclick="logout()">
+            خروج از سایت
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        طراحی و مدیریت سامانه جزوات ریاضی
+    </p>
+
+    <p style="margin-top:10px;">
+        <strong>ایمیل:</strong>
+        <a href="mailto:yaserkhalatpour@gmail.com">
+            yaserkhalatpour@gmail.com
+        </a>
+    </p>
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   رمز عبور
+===================================================== */
+
+const SITE_PASSWORD = "1214";
+
+
+/* =====================================================
+   بررسی ورود
+===================================================== */
+
+function showMainSite(){
+
+    document.getElementById("loginPage").style.display = "none";
+
+    document.getElementById("mainSite").style.display = "block";
+
+    loadWebsite();
+
+}
+
+
+/* =====================================================
+   فرم ورود
+===================================================== */
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const password =
+        document.getElementById("passwordInput").value;
+
+    const error =
+        document.getElementById("errorMessage");
+
+
+    if(password === SITE_PASSWORD){
+
+        sessionStorage.setItem("mathSiteLogin","true");
+
+        showMainSite();
+
+    }else{
+
+        error.style.display = "block";
+
+        document.getElementById("passwordInput").value = "";
+
+        document.getElementById("passwordInput").focus();
+
+    }
+
+});
+
+
+/* =====================================================
+   بررسی نشست قبلی
+===================================================== */
+
+if(sessionStorage.getItem("mathSiteLogin") === "true"){
+
+    showMainSite();
+
+}
+
+
+/* =====================================================
+   خروج
+===================================================== */
+
+function logout(){
+
+    sessionStorage.removeItem("mathSiteLogin");
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   تنظیمات سایت
+===================================================== */
+
+const BASE_URL = "./";
+
+
+/* =====================================================
+   خواندن files.json
+===================================================== */
+
+async function loadJSON(){
+
+    const response =
+        await fetch(
+            "./files.json?version=" + Date.now(),
+            {
+                cache:"no-store"
+            }
+        );
+
+    if(!response.ok){
+
+        throw new Error(
+            "فایل files.json پیدا نشد."
+        );
+
+    }
+
+    return await response.json();
+
+}
+
+
+/* =====================================================
+   گرفتن فایل‌های یک پوشه
+===================================================== */
+
+function getFilesFromJSON(data, folder){
+
+    const parts = folder.split("/");
+
+    let current = data;
+
+    for(const part of parts){
+
+        if(
+            current === undefined ||
+            current === null
+        ){
+
+            return [];
+
+        }
+
+        current = current[part];
+
+    }
+
+    if(!Array.isArray(current)){
+
+        return [];
+
+    }
+
+    return current;
+
+}
+
+
+/* =====================================================
+   ساخت مسیر PDF
+===================================================== */
+
+function createPDFPath(folder,file){
+
+    return BASE_URL +
+        folder +
+        "/" +
+        file
+            .split("/")
+            .map(part => encodeURIComponent(part))
+            .join("/");
+
+}
+
+
+/* =====================================================
+   ساخت کارت PDF
+===================================================== */
+
+function createPDFCard(folder,file,index){
+
+    const card =
+        document.createElement("div");
+
+    card.className = "pdf-card";
+
+    card.dataset.search =
+        ("جزوه " + (index + 1) + " " + file)
+        .toLowerCase();
+
+    card.innerHTML = `
+
+        <div class="pdf-icon">
+            📄
+        </div>
+
+        <div class="pdf-name">
+            جزوه ${index + 1}
+        </div>
+
+        <a
+            class="view-btn"
+            href="${createPDFPath(folder,file)}"
+            target="_blank"
+            rel="noopener"
+        >
+            مشاهده
+        </a>
+
+    `;
+
+    return card;
+
+}
+
+
+/* =====================================================
+   ساخت فصل
+===================================================== */
+
+function createChapter(
+    parent,
+    folder,
+    chapterNumber,
+    title
+){
+
+    const files =
+        getFilesFromJSON(
+            window.siteData,
+            folder
+        );
+
+    const chapter =
+        document.createElement("div");
+
+    chapter.className = "chapter";
+
+    const header =
+        document.createElement("div");
+
+    header.className =
+        "chapter-header";
+
+    header.textContent =
+        title ||
+        "فصل " + chapterNumber;
+
+    chapter.appendChild(header);
+
+
+    const grid =
+        document.createElement("div");
+
+    grid.className =
+        "pdf-grid";
+
+
+    if(files.length === 0){
+
+        grid.innerHTML = `
+            <div class="empty-message">
+                هنوز جزوه‌ای در این بخش قرار نگرفته است.
+            </div>
+        `;
+
+    }else{
+
+        files.forEach(function(file,index){
+
+            grid.appendChild(
+                createPDFCard(
+                    folder,
+                    file,
+                    index
+                )
+            );
+
+        });
+
+    }
+
+
+    chapter.appendChild(grid);
+
+    parent.appendChild(chapter);
+
+}
+
+
+/* =====================================================
+   ساخت پایه
+===================================================== */
+
+function createGrade(
+    elementId,
+    gradeFolder,
+    gradeTitle
+){
+
+    const container =
+        document.getElementById(elementId);
+
+    const chapterNames = [
+
+        "فصل اول",
+
+        "فصل دوم",
+
+        "فصل سوم",
+
+        "فصل چهارم",
+
+        "فصل پنجم",
+
+        "فصل ششم",
+
+        "فصل هفتم"
+
+    ];
+
+
+    for(let i = 1; i <= 7; i++){
+
+        createChapter(
+
+            container,
+
+            gradeFolder +
+            "/chapter" +
+            i,
+
+            i,
+
+            chapterNames[i-1]
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ساخت فاینال
+===================================================== */
+
+function createSpecialSection(
+    elementId,
+    folder
+){
+
+    const container =
+        document.getElementById(elementId);
+
+    const files =
+        getFilesFromJSON(
+            window.siteData,
+            folder
+        );
+
+
+    const grid =
+        document.createElement("div");
+
+    grid.className =
+        "pdf-grid";
+
+
+    if(files.length === 0){
+
+        grid.innerHTML = `
+            <div class="empty-message">
+                هنوز فایلی در این بخش قرار نگرفته است.
+            </div>
+        `;
+
+    }else{
+
+        files.forEach(function(file,index){
+
+            const card =
+                createPDFCard(
+                    folder,
+                    file,
+                    index
+                );
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+
+    container.appendChild(grid);
+
+}
+
+
+/* =====================================================
+   بارگذاری کل سایت
+===================================================== */
+
+async function loadWebsite(){
+
+    try{
+
+        window.siteData =
+            await loadJSON();
+
+
+        /* دهم */
+
+        createGrade(
+            "tenth",
+            "tenth",
+            "ریاضی دهم"
+        );
+
+
+        /* یازدهم */
+
+        createGrade(
+            "eleventh",
+            "eleventh",
+            "ریاضی یازدهم"
+        );
+
+
+        /* دوازدهم */
+
+        createGrade(
+            "twelfth",
+            "twelfth",
+            "ریاضی دوازدهم"
+        );
+
+
+        /* فاینال */
+
+        createSpecialSection(
+            "final",
+            "final"
+        );
+
+
+        /* کنکور */
+
+        createSpecialSection(
+            "konkoor",
+            "konkoor"
+        );
+
+
+        setupSearch();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById("tenth").innerHTML = `
+
+            <div class="empty-message">
+
+                ⚠️ خطا در بارگذاری فایل‌ها.
+
+                <br><br>
+
+                لطفاً بررسی کنید که
+                <strong>files.json</strong>
+                در کنار
+                <strong>index.html</strong>
+                قرار داشته باشد.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   جستجو
+===================================================== */
+
+function setupSearch(){
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+
+    searchInput.addEventListener(
+        "input",
+        function(){
+
+            const value =
+                this.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const cards =
+                document.querySelectorAll(
+                    ".pdf-card"
+                );
+
+
+            cards.forEach(function(card){
+
+                const text =
+                    card.dataset.search || "";
+
+                if(
+                    value === "" ||
+                    text.includes(value)
+                ){
+
+                    card.style.display =
+                        "block";
+
+                }else{
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            });
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
