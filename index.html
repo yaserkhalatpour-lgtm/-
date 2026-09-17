@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>جزوات ریاضی دکتر یاسر خلعت پور</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Vazirmatn",Tahoma,sans-serif;
+    background:
+        linear-gradient(135deg,#eef4ff,#f8fbff 45%,#eef9f4);
+    color:#172033;
+    min-height:100vh;
+}
+
+header{
+    background:linear-gradient(135deg,#173b72,#2563a6);
+    color:white;
+    padding:45px 20px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(0,0,0,.15);
+}
+
+header h1{
+    font-size:clamp(25px,5vw,42px);
+    margin-bottom:12px;
+    font-weight:800;
+}
+
+header h2{
+    font-size:clamp(18px,3vw,25px);
+    margin-bottom:8px;
+    font-weight:700;
+}
+
+header p{
+    opacity:.9;
+    font-size:15px;
+}
+
+.container{
+    width:min(1150px,94%);
+    margin:30px auto 60px;
+}
+
+.welcome{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 30px rgba(0,0,0,.07);
+    border-right:6px solid #2563a6;
+}
+
+.welcome h3{
+    color:#173b72;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.welcome p{
+    line-height:2;
+    color:#526070;
+}
+
+.search-box{
+    margin-bottom:30px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:white;
+    padding:17px 20px;
+    border-radius:16px;
+    box-shadow:0 6px 25px rgba(0,0,0,.08);
+    font-family:inherit;
+    font-size:16px;
+}
+
+.search-box input:focus{
+    box-shadow:0 0 0 3px rgba(37,99,166,.15);
+}
+
+.section{
+    margin-bottom:25px;
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.07);
+}
+
+.section-title{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    padding:22px 25px;
+    color:white;
+    font-family:inherit;
+    font-size:22px;
+    font-weight:800;
+    text-align:right;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.section-title span:last-child{
+    font-size:18px;
+    transition:.3s;
+}
+
+.section.open .section-title span:last-child{
+    transform:rotate(180deg);
+}
+
+.tenth .section-title{
+    background:linear-gradient(135deg,#2563a6,#3287c9);
+}
+
+.eleventh .section-title{
+    background:linear-gradient(135deg,#18815a,#2ca673);
+}
+
+.twelfth .section-title{
+    background:linear-gradient(135deg,#7b4ca0,#a66ac7);
+}
+
+.final .section-title{
+    background:linear-gradient(135deg,#c47a1a,#e2a43c);
+}
+
+.konkoor .section-title{
+    background:linear-gradient(135deg,#a83232,#d55252);
+}
+
+.section-content{
+    display:none;
+    padding:20px;
+}
+
+.section.open .section-content{
+    display:block;
+}
+
+.chapters{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+}
+
+.chapter{
+    border:1px solid #e6ebf2;
+    border-radius:18px;
+    overflow:hidden;
+    background:#fbfdff;
+    transition:.25s;
+}
+
+.chapter:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.chapter-title{
+    padding:17px;
+    font-size:18px;
+    font-weight:800;
+    color:#20344f;
+    background:#f1f6fb;
+    border-bottom:1px solid #e5eaf0;
+}
+
+.pdf-list{
+    padding:12px;
+}
+
+.pdf-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:white;
+    border:1px solid #e9edf2;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:9px;
+}
+
+.pdf-card:last-child{
+    margin-bottom:0;
+}
+
+.pdf-name{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#344054;
+}
+
+.pdf-icon{
+    font-size:22px;
+}
+
+.view-btn{
+    text-decoration:none;
+    background:#2563a6;
+    color:white;
+    padding:7px 13px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.view-btn:hover{
+    opacity:.85;
+}
+
+.empty{
+    text-align:center;
+    padding:18px;
+    color:#98a2b3;
+    font-size:14px;
+}
+
+footer{
+    background:#152238;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+    line-height:2;
+}
+
+footer a{
+    color:#8bc4ff;
+    text-decoration:none;
+}
+
+footer a:hover{
+    text-decoration:underline;
+}
+
+.loading{
+    text-align:center;
+    padding:20px;
+    color:#667085;
+}
+
+.error{
+    background:#fff1f0;
+    color:#b42318;
+    padding:15px;
+    border-radius:12px;
+    margin:10px 0;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:32px 15px;
+    }
+
+    .container{
+        width:95%;
+        margin-top:20px;
+    }
+
+    .section-title{
+        padding:18px;
+        font-size:18px;
+    }
+
+    .section-content{
+        padding:12px;
+    }
+
+    .chapters{
+        grid-template-columns:1fr;
+    }
+
+    .pdf-card{
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 جزوات ریاضی</h1>
+    <h2>دکتر یاسر خلعت پور</h2>
+    <p>آموزش، حل تشریحی و آمادگی امتحانات نهایی و کنکور</p>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h3>🎓 به سایت آموزشی خوش آمدید</h3>
+        <p>
+            در این سایت می‌توانید جزوات و مطالب آموزشی ریاضی
+            پایه‌های دهم، یازدهم و دوازدهم را مشاهده کنید.
+            همچنین بخش‌های ویژه امتحان نهایی و کنکور نیز در دسترس است.
+        </p>
+    </div>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 جستجو در جزوات..."
+        >
+    </div>
+
+    <!-- دهم -->
+    <section class="section tenth open">
+
+        <button class="section-title" onclick="toggleSection(this)">
+            <span>📘 ریاضی دهم</span>
+            <span>⌄</span>
+        </button>
+
+        <div class="section-content">
+
+            <div class="chapters">
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل اول</div>
+                    <div class="pdf-list" data-folder="tenth/chapter1"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل دوم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter2"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل سوم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter3"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل چهارم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter4"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل پنجم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter5"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل ششم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter6"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل هفتم</div>
+                    <div class="pdf-list" data-folder="tenth/chapter7"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- یازدهم -->
+    <section class="section eleventh">
+
+        <button class="section-title" onclick="toggleSection(this)">
+            <span>📗 ریاضی یازدهم</span>
+            <span>⌄</span>
+        </button>
+
+        <div class="section-content">
+
+            <div class="chapters">
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل اول</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter1"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل دوم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter2"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل سوم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter3"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل چهارم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter4"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل پنجم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter5"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل ششم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter6"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل هفتم</div>
+                    <div class="pdf-list" data-folder="eleventh/chapter7"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- دوازدهم -->
+    <section class="section twelfth">
+
+        <button class="section-title" onclick="toggleSection(this)">
+            <span>📕 ریاضی دوازدهم</span>
+            <span>⌄</span>
+        </button>
+
+        <div class="section-content">
+
+            <div class="chapters">
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل اول</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter1"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل دوم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter2"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل سوم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter3"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل چهارم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter4"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل پنجم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter5"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل ششم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter6"></div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">فصل هفتم</div>
+                    <div class="pdf-list" data-folder="twelfth/chapter7"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- امتحان نهایی -->
+    <section class="section final">
+
+        <button class="section-title" onclick="toggleSection(this)">
+            <span>📝 امتحان نهایی</span>
+            <span>⌄</span>
+        </button>
+
+        <div class="section-content">
+
+            <div class="chapters">
+
+                <div class="chapter">
+                    <div class="chapter-title">جزوات امتحان نهایی</div>
+                    <div class="pdf-list" data-folder="final"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- کنکور -->
+    <section class="section konkoor">
+
+        <button class="section-title" onclick="toggleSection(this)">
+            <span>🎯 کنکور</span>
+            <span>⌄</span>
+        </button>
+
+        <div class="section-content">
+
+            <div class="chapters">
+
+                <div class="chapter">
+                    <div class="chapter-title">جزوات کنکور</div>
+                    <div class="pdf-list" data-folder="konkoor"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+
+<footer>
+
+    <div>© تمامی حقوق محفوظ است</div>
+
+    <div>
+        دکتر یاسر خلعت پور
+    </div>
+
+    <div>
+        📧
+        <a href="mailto:yaserkhalatpour@gmail.com">
+            yaserkhalatpour@gmail.com
+        </a>
+    </div>
+
+</footer>
+
+
+<script>
+
+/*
+========================================================
+تنظیمات اصلی سایت
+========================================================
+*/
+
+const OWNER = "yaserkhalatpour-lgtm";
+const REPO = "-";
+const BRANCH = "main";
+
+
+/*
+========================================================
+باز و بسته کردن بخش‌ها
+========================================================
+*/
+
+function toggleSection(button){
+
+    const section = button.closest(".section");
+
+    section.classList.toggle("open");
+
+}
+
+
+/*
+========================================================
+ساخت لینک مستقیم PDF
+========================================================
+*/
+
+function createPDFUrl(path){
+
+    const parts = path
+        .split("/")
+        .map(x => encodeURIComponent(x));
+
+    return "https://" +
+        OWNER +
+        ".github.io/" +
+        encodeURIComponent(REPO) +
+        "/" +
+        parts.join("/");
+}
+
+
+/*
+========================================================
+گرفتن فایل‌های یک پوشه
+========================================================
+*/
+
+async function getFiles(folder){
+
+    const api =
+        "https://api.github.com/repos/" +
+        OWNER +
+        "/" +
+        REPO +
+        "/contents/" +
+        folder +
+        "?ref=" +
+        BRANCH;
+
+    const response = await fetch(api, {
+        cache:"no-store"
+    });
+
+    if(!response.ok){
+
+        throw new Error(
+            "خطا در دریافت پوشه: " +
+            folder +
+            " | کد: " +
+            response.status
+        );
+
+    }
+
+    const data = await response.json();
+
+    if(!Array.isArray(data)){
+        return [];
+    }
+
+    return data
+        .filter(item =>
+            item.type === "file" &&
+            item.name.toLowerCase().endsWith(".pdf")
+        )
+        .sort((a,b) =>
+            a.name.localeCompare(
+                b.name,
+                "fa",
+                {numeric:true}
+            )
+        );
+
+}
+
+
+/*
+========================================================
+نمایش PDF ها
+========================================================
+*/
+
+async function loadFolder(element){
+
+    const folder = element.dataset.folder;
+
+    element.innerHTML =
+        '<div class="loading">⏳ در حال دریافت جزوات...</div>';
+
+    try{
+
+        const files = await getFiles(folder);
+
+        if(files.length === 0){
+
+            element.innerHTML =
+                '<div class="empty">هنوز جزوه‌ای در این بخش قرار نگرفته است.</div>';
+
+            return;
+        }
+
+        element.innerHTML = "";
+
+        files.forEach((file,index)=>{
+
+            const card = document.createElement("div");
+
+            card.className = "pdf-card";
+
+            card.dataset.search =
+                ("جزوه " + (index+1) + " " + file.name)
+                .toLowerCase();
+
+            const name = document.createElement("div");
+
+            name.className = "pdf-name";
+
+            name.innerHTML =
+                '<span class="pdf-icon">📄</span>' +
+                '<span>جزوه ' + (index+1) + '</span>';
+
+            const link = document.createElement("a");
+
+            link.className = "view-btn";
+
+            link.href = createPDFUrl(file.path);
+
+            link.target = "_blank";
+
+            link.rel = "noopener";
+
+            link.textContent = "مشاهده";
+
+            card.appendChild(name);
+
+            card.appendChild(link);
+
+            element.appendChild(card);
+
+        });
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        element.innerHTML =
+            '<div class="error">' +
+            '⚠️ دریافت جزوات این بخش با مشکل مواجه شد.' +
+            '</div>';
+
+    }
+
+}
+
+
+/*
+========================================================
+بارگذاری تمام پوشه‌ها
+========================================================
+*/
+
+function loadAll(){
+
+    const folders =
+        document.querySelectorAll(".pdf-list");
+
+    folders.forEach(element => {
+
+        loadFolder(element);
+
+    });
+
+}
+
+
+/*
+========================================================
+جستجو
+========================================================
+*/
+
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function(){
+
+        const text =
+            this.value
+            .trim()
+            .toLowerCase();
+
+        document
+            .querySelectorAll(".pdf-card")
+            .forEach(card => {
+
+                const searchText =
+                    card.dataset.search || "";
+
+                if(
+                    text === "" ||
+                    searchText.includes(text)
+                ){
+
+                    card.style.display = "flex";
+
+                }
+                else{
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+    });
+
+
+/*
+========================================================
+شروع سایت
+========================================================
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAll
+);
+
+</script>
+
+</body>
+</html>
