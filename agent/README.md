@@ -8,8 +8,9 @@ This is the first, deliberately limited milestone of the private AI agent for
 - Private FastAPI service.
 - Health endpoint: `GET /health`.
 - Authenticated task planning endpoint: `POST /plan`.
-- Uses the OpenAI Responses API.
+- Uses Groq's OpenAI-compatible Chat Completions API.
 - Persian plans with steps, dependencies, risks, and acceptance checks.
+- Default model: `openai/gpt-oss-120b` (subject to Groq free-plan availability and limits).
 
 ## Not enabled yet
 
@@ -24,7 +25,7 @@ been implemented and tested.
 2. Create and activate a virtual environment.
 3. Install: `pip install -r requirements.txt`.
 4. Copy `.env.example` to `.env`.
-5. Set `OPENAI_API_KEY`, `OPENAI_MODEL`, and a long random
+5. Set `GROQ_API_KEY`, optionally `GROQ_MODEL`, and a long random
    `AGENT_ADMIN_TOKEN` in the local environment. Never commit `.env`.
 6. Run: `uvicorn app:app --host 127.0.0.1 --port 8000`.
 
