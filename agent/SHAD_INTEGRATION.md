@@ -72,3 +72,31 @@ Keep the integration disabled until the library and update-cursor behavior
 have been tested, the account owner has reviewed the unofficial-client risk,
 and a dry-run test has been explicitly approved. Do not enable automatic
 posting merely because deployment succeeds.
+
+## Required isolated acceptance test (not yet run)
+
+Do not use the class group for protocol experiments. Create a separate,
+private test group with only the account owner and a second test account.
+Before any client is connected, record a local activation timestamp and a
+unique test marker sent before activation. After connection, send a different
+marker. The worker must demonstrate all of the following:
+
+- The pre-activation marker is never delivered to the message handler.
+- The post-activation marker is delivered exactly once.
+- Messages from every other group are ignored.
+- Messages authored by the connected account are ignored.
+- No message body or student-identifying data appears in logs.
+- The kill switch stops polling promptly.
+- Dry-run mode never sends a reply.
+
+Repeat the test after restarting the worker and after renewing the session.
+If the library cannot guarantee a stable update cursor across startup and
+reconnect, the integration must remain disabled. Only after these checks pass
+should teacher-approved replies be tested in the private test group. The
+requested class group remains out of scope until separate explicit approval.
+
+## Current CI coverage
+
+GitHub Actions currently checks Python compilation and the offline fail-closed
+worker tests. It does not test authentication, Shad connectivity, update
+ordering, or message delivery semantics.
