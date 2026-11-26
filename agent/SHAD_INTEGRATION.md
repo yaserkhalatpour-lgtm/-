@@ -36,6 +36,14 @@ Therefore the public documentation alone cannot establish that pre-activation
 messages will never reach handlers. Do not infer this guarantee from the
 parameter name or default value.
 
+The PyPI project homepage currently links to the maintainer's GitHub profile,
+not to a clearly identified source repository for this exact release. The
+1.0.15 source distribution is published without PyPI provenance metadata.
+During this review, a repository containing the matching release source could
+not be reliably identified and independently inspected. Treat the package
+source and release-to-source correspondence as unverified until the maintainer
+provides a direct repository/tag or verifiable build provenance.
+
 These are unofficial third-party clients. No official public Shad developer
 API or official approval for personal-account automation has been verified
 during this review. Their APIs, compatibility, security, and service-policy
