@@ -3,7 +3,7 @@ name: Education news monitor
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,7 +25,7 @@ jobs:
           python-version: "3.11"
           cache: pip
           cache-dependency-path: news_agent/requirements.txt
-      - name: Restore seen-news database
+      - name: Restore persistent news queue
         uses: actions/cache@v4
         with:
           path: news_agent/news_seen.sqlite3
@@ -34,7 +34,7 @@ jobs:
             education-news-db-
       - name: Install dependencies
         run: pip install -r news_agent/requirements.txt
-      - name: Run monitor
+      - name: Run monitor and publish backlog
         working-directory: news_agent
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
