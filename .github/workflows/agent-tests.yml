@@ -1,0 +1,25 @@
+name: Agent safety checks
+
+on:
+  push:
+    branches:
+      - ai-agent-foundation
+  pull_request:
+    branches:
+      - ai-agent-foundation
+  workflow_dispatch:
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile agent Python files
+        run: python -m compileall -q agent
+      - name: Run offline safety tests
+        run: python -m unittest discover -s agent -p 'test_*.py' -v
