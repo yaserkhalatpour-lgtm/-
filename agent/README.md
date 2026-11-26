@@ -65,3 +65,17 @@ override its start command to `python shad_worker.py`. Do not deploy it as a
 live integration yet. Mount any future session directory as a private secret
 volume outside the repository; never put session files in environment values
 or GitHub.
+
+
+## Offline safety tests
+
+Run the Shad worker's fail-closed tests without network access:
+
+```bash
+python -m unittest discover -s agent -p 'test_*.py' -v
+```
+
+These tests verify disabled-by-default behavior, the no-network dry-run path,
+missing-group refusal, rejection of live mode, and invalid boolean settings.
+They do not authenticate with Shad or validate the third-party client's
+message-update semantics.
