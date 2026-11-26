@@ -2,3 +2,7 @@
 .venv/
 __pycache__/
 .pytest_cache/
+# Shad account/session material must never enter Git.
+sessions/
+*.session
+*.session-*
