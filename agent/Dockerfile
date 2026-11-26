@@ -7,8 +7,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-COPY app.py ./
+COPY app.py shad_worker.py ./
 
 # The hosting platform should inject secrets and provide PORT.
+# A separate background-worker service may override the start command with:
+# python shad_worker.py
 EXPOSE 8000
 CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000}"]
