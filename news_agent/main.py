@@ -26,7 +26,7 @@ def feeds():
     return [x for x in data if isinstance(x,dict) and x.get("url")]
 
 def clean(s):
-    return re.sub(r"\s+"," ",html.unescape(re.sub(r"<[^>]+>"," ",s or ""))).strip()
+    return re.sub(r"\\s+"," ",html.unescape(re.sub(r"<[^>]+>"," ",s or ""))).strip()
 
 def init():
     DB.parent.mkdir(parents=True,exist_ok=True)
@@ -46,11 +46,23 @@ def score(title,summary):
     return sum(v for _,v in hits),[k for k,_ in hits]
 
 def send(message):
-    token=os.environ["TELEGRAM_BOT_TOKEN"]; chat=os.environ["TELEGRAM_CHAT_ID"]
-    r=requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
-      json={"chat_id":chat,"text":message,"parse_mode":"HTML","disable_web_page_preview":False},timeout=20)
-    r.raise_for_status()
-    if not r.json().get("ok"): raise RuntimeError("Telegram API rejected the message")
+    token=os.environ["TELEGRAM_BOT_TOKEN"].strip()
+    chat=os.environ["TELEGRAM_CHAT_ID"].strip()
+    if not token or not chat:
+        raise RuntimeError("Telegram configuration error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is empty")
+    r=requests.post(
+        f"https://api.telegram.org/bot{token}/sendMessage",
+        json={"chat_id":chat,"text":message,"parse_mode":"HTML","disable_web_page_preview":False},
+        timeout=20
+    )
+    try:
+        result=r.json()
+    except ValueError:
+        result={}
+    if not r.ok or not result.get("ok"):
+        description=result.get("description") or r.text[:500] or "No error description returned"
+        error_code=result.get("error_code",r.status_code)
+        raise RuntimeError(f"Telegram API error {error_code}: {description}")
 
 def run():
     init(); candidates=[]
@@ -72,10 +84,10 @@ def run():
         except Exception: log.exception("Failed reading %s",name)
     candidates.sort(reverse=True,key=lambda x:x[0])
     for points,item_id,title,summary,url,name,hits in candidates[:int(os.getenv("NEWS_MAX_PER_RUN","8"))]:
-        post=("🎓 <b>"+html.escape(title[:350])+"</b>\n\n"+
-          (html.escape(summary[:650])+"\n\n" if summary else "")+
-          "📰 منبع: "+html.escape(name[:100])+"\n🔗 <a href=\""+html.escape(url,quote=True)+"\">متن خبر</a>"+
-          "\n\n🤖 پایشگر اخبار آموزش‌وپرورش")
+        post=("🎓 <b>"+html.escape(title[:350])+"</b>\\n\\n"+
+          (html.escape(summary[:650])+"\\n\\n" if summary else "")+
+          "📰 منبع: "+html.escape(name[:100])+"\\n🔗 <a href=\\""+html.escape(url,quote=True)+"\\">متن خبر</a>"+
+          "\\n\\n🤖 پایشگر اخبار آموزش‌وپرورش")
         if PUBLISH:
             try: send(post); remember(item_id,title,url,1); log.info("Published: %s",title)
             except Exception: log.exception("Telegram publish failed: %s",title)
