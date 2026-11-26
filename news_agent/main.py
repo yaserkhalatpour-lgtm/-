@@ -26,7 +26,7 @@ def feeds():
     return [x for x in data if isinstance(x,dict) and x.get("url")]
 
 def clean(s):
-    return re.sub(r"\\s+"," ",html.unescape(re.sub(r"<[^>]+>"," ",s or ""))).strip()
+    return re.sub(r"\s+"," ",html.unescape(re.sub(r"<[^>]+>"," ",s or ""))).strip()
 
 def init():
     DB.parent.mkdir(parents=True,exist_ok=True)
