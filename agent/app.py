@@ -18,7 +18,7 @@ load_dotenv()
 
 app = FastAPI(
     title="Khalatpour Math AI Agent",
-    version="0.1.0",
+    version="0.1.1",
     description="Private planning service; execution tools are not enabled yet.",
 )
 
@@ -44,33 +44,43 @@ def require_admin(authorization: Annotated[str | None, Header()] = None) -> None
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "service": "khalatpour-math-agent", "version": "0.1.0"}
+    return {"status": "ok", "service": "khalatpour-math-agent", "version": "0.1.1"}
 
 
 @app.post("/plan", response_model=TaskPlan, dependencies=[Depends(require_admin)])
 def plan_task(request: TaskRequest) -> TaskPlan:
-    api_key = os.getenv("OPENAI_API_KEY", "")
-    model = os.getenv("OPENAI_MODEL", "")
-    if not api_key or not model:
-        raise HTTPException(status_code=503, detail="OpenAI configuration is incomplete")
+    api_key = os.getenv("GROQ_API_KEY", "")
+    model = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="Groq API key is not configured")
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://api.groq.com/openai/v1",
+    )
     try:
-        response = client.responses.create(
+        response = client.chat.completions.create(
             model=model,
-            instructions=(
-                "You are the planning component of the Khalatpour Math educational website. "
-                "Respond in Persian. Break the requested task into clear, verifiable steps. "
-                "Identify required inputs, files likely involved, risks, and acceptance tests. "
-                "Do not claim to have performed actions. This service is planning-only."
-            ),
-            input=request.task,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are the planning component of the Khalatpour Math educational website. "
+                        "Respond in Persian. Break the requested task into clear, verifiable steps. "
+                        "Identify required inputs, files likely involved, risks, and acceptance tests. "
+                        "Do not claim to have performed actions. This service is planning-only."
+                    ),
+                },
+                {"role": "user", "content": request.task},
+            ],
+            temperature=0.2,
         )
+        plan = response.choices[0].message.content or ""
     except Exception as exc:
         # Do not expose provider details or credentials to callers.
         raise HTTPException(status_code=502, detail="AI provider request failed") from exc
 
-    return TaskPlan(task=request.task, plan=response.output_text)
+    return TaskPlan(task=request.task, plan=plan)
 
 
 if __name__ == "__main__":
