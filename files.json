@@ -1,84 +1,23 @@
 {
   "tenth": {
     "chapter1": [
-      "11.pdf",
+      "1.1.pdf",
+      "1.2.pdf",
       "12.pdf",
       "13.pdf",
       "14.pdf",
       "15.pdf",
       "16.pdf",
       "17.pdf",
-      "18.pdf",
-      "19.pdf"
+      "18.pdf"
     ],
-    "chapter2": [
-      "21.pdf",
-      "22.pdf",
-      "23.pdf",
-      "24.pdf",
-      "25.pdf",
-      "26.pdf",
-      "27.pdf",
-      "28.pdf",
-      "29.pdf"
-    ],
-    "chapter3": [
-      "31.pdf",
-      "32.pdf",
-      "33.pdf",
-      "34.pdf",
-      "35.pdf",
-      "36.pdf",
-      "37.pdf",
-      "38.pdf",
-      "39.pdf"
-    ],
-    "chapter4": [
-      "41.pdf",
-      "42.pdf",
-      "43.pdf",
-      "44.pdf",
-      "45.pdf",
-      "46.pdf",
-      "47.pdf",
-      "48.pdf",
-      "49.pdf"
-    ],
-    "chapter5": [
-      "51.pdf",
-      "52.pdf",
-      "53.pdf",
-      "54.pdf",
-      "55.pdf",
-      "56.pdf",
-      "57.pdf",
-      "58.pdf",
-      "59.pdf"
-    ],
-    "chapter6": [
-      "61.pdf",
-      "62.pdf",
-      "63.pdf",
-      "64.pdf",
-      "65.pdf",
-      "66.pdf",
-      "67.pdf",
-      "68.pdf",
-      "69.pdf"
-    ],
-    "chapter7": [
-      "71.pdf",
-      "72.pdf",
-      "73.pdf",
-      "74.pdf",
-      "75.pdf",
-      "76.pdf",
-      "77.pdf",
-      "78.pdf",
-      "79.pdf"
-    ]
+    "chapter2": [],
+    "chapter3": [],
+    "chapter4": [],
+    "chapter5": [],
+    "chapter6": [],
+    "chapter7": []
   },
-
   "eleventh": {
     "chapter1": [
       "111.pdf",
@@ -158,7 +97,6 @@
       "719.pdf"
     ]
   },
-
   "twelfth": {
     "chapter1": [
       "311.pdf",
@@ -238,7 +176,6 @@
       "919.pdf"
     ]
   },
-
   "final": [
     "a.pdf",
     "b.pdf",
@@ -267,7 +204,6 @@
     "y.pdf",
     "z.pdf"
   ],
-
   "konkoor": [
     "A.pdf",
     "B.pdf",
