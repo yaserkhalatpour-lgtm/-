@@ -26,6 +26,7 @@ def main() -> int:
     enabled = env_bool("SHAD_ENABLED", False)
     dry_run = env_bool("SHAD_DRY_RUN", True)
     auto_reply = env_bool("SHAD_AUTO_REPLY", False)
+    group_name = os.getenv("SHAD_GROUP_NAME", "").strip()
     group_guid = os.getenv("SHAD_GROUP_GUID", "").strip()
     session_dir = Path(os.getenv("SHAD_SESSION_DIR", "/run/secrets/shad")).resolve()
 
@@ -34,6 +35,7 @@ def main() -> int:
         "enabled": enabled,
         "dry_run": dry_run,
         "auto_reply": auto_reply,
+        "group_name": group_name,
         "group_configured": bool(group_guid),
         "session_directory_configured": bool(str(session_dir)),
         "mode": "preflight_only",
