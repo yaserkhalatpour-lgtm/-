@@ -44,6 +44,12 @@ not be reliably identified and independently inspected. Treat the package
 source and release-to-source correspondence as unverified until the maintainer
 provides a direct repository/tag or verifiable build provenance.
 
+There is also a licensing metadata conflict: the rendered README says MIT,
+while the PyPI release metadata declares `GPL-3.0-only`. This discrepancy must
+be resolved against the actual LICENSE file and source archive before the
+package is adopted. The package has not been installed or executed in this
+project, and no claim is made that its code has passed a security audit.
+
 These are unofficial third-party clients. No official public Shad developer
 API or official approval for personal-account automation has been verified
 during this review. Their APIs, compatibility, security, and service-policy
