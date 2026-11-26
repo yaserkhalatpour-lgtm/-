@@ -16,7 +16,8 @@ class ShadWorkerTests(unittest.TestCase):
             "SHAD_ENABLED": "false",
             "SHAD_DRY_RUN": "true",
             "SHAD_AUTO_REPLY": "false",
-            "SHAD_GROUP_GUID": "test-group",
+            "SHAD_GROUP_NAME": "ریاضی۱-۱۰۱",
+            "SHAD_GROUP_GUID": "g0DhwiT05ffedba9a45513dfcfe78f72",
             "SHAD_SESSION_DIR": "/tmp/shad-test-session",
         }
         values.update(overrides)
@@ -31,6 +32,7 @@ class ShadWorkerTests(unittest.TestCase):
         code, out, err = self.run_main(SHAD_ENABLED="false")
         self.assertEqual(code, 0)
         self.assertIn("disabled", out)
+        self.assertIn("ریاضی۱-۱۰۱", out)
         self.assertEqual(err, "")
 
     def test_enabled_dry_run_still_blocks_network_polling(self) -> None:
