@@ -33,7 +33,7 @@ def feeds():
 
 
 def clean(value):
-    return re.sub(r"\\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
 
 
 def init():
@@ -41,16 +41,10 @@ def init():
     with sqlite3.connect(DB) as conn:
         conn.execute("""
             CREATE TABLE IF NOT EXISTS seen (
-                id TEXT PRIMARY KEY,
-                title TEXT,
-                url TEXT,
-                seen_at TEXT,
-                published INTEGER DEFAULT 0,
-                summary TEXT DEFAULT '',
-                source TEXT DEFAULT '',
-                score INTEGER DEFAULT 0,
-                eligible INTEGER DEFAULT 0,
-                published_at TEXT DEFAULT ''
+                id TEXT PRIMARY KEY, title TEXT, url TEXT, seen_at TEXT,
+                published INTEGER DEFAULT 0, summary TEXT DEFAULT '',
+                source TEXT DEFAULT '', score INTEGER DEFAULT 0,
+                eligible INTEGER DEFAULT 0, published_at TEXT DEFAULT ''
             )
         """)
         columns = {row[1] for row in conn.execute("PRAGMA table_info(seen)")}
@@ -77,8 +71,8 @@ def entry_date(entry):
     parsed = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
     if parsed:
         try:
-            from time import mktime
-            return datetime.fromtimestamp(mktime(parsed), timezone.utc).isoformat()
+            from calendar import timegm
+            return datetime.fromtimestamp(timegm(parsed), timezone.utc).isoformat()
         except (OverflowError, ValueError, TypeError):
             pass
     return datetime.now(timezone.utc).isoformat()
@@ -168,11 +162,11 @@ def publish_queue():
         summary = item["summary"] or ""
         source = item["source"] or "منبع خبری"
         post = (
-            "🎓 <b>" + html.escape(title[:350]) + "</b>\\n\\n" +
-            (html.escape(summary[:650]) + "\\n\\n" if summary else "") +
+            "🎓 <b>" + html.escape(title[:350]) + "</b>\n\n" +
+            (html.escape(summary[:650]) + "\n\n" if summary else "") +
             "📰 منبع: " + html.escape(source[:100]) +
-            "\\n🔗 <a href=\\"" + html.escape(url, quote=True) + "\\">متن خبر</a>" +
-            "\\n\\n🤖 پایشگر اخبار آموزش‌وپرورش | @amoozeshjam"
+            "\n🔗 <a href=\"" + html.escape(url, quote=True) + "\">متن خبر</a>" +
+            "\n\n🤖 پایشگر اخبار آموزش‌وپرورش | @amoozeshjam"
         )
         try:
             send(post)
