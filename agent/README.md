@@ -79,3 +79,10 @@ These tests verify disabled-by-default behavior, the no-network dry-run path,
 missing-group refusal, rejection of live mode, and invalid boolean settings.
 They do not authenticate with Shad or validate the third-party client's
 message-update semantics.
+
+## Continuous integration
+
+GitHub Actions runs the offline Python compilation and Shad worker safety tests
+on pushes and pull requests targeting `ai-agent-foundation`. These checks do
+not connect to Shad and do not validate the third-party client's live update
+cursor behavior.
