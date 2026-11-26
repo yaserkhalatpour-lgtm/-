@@ -84,10 +84,10 @@ def run():
         except Exception: log.exception("Failed reading %s",name)
     candidates.sort(reverse=True,key=lambda x:x[0])
     for points,item_id,title,summary,url,name,hits in candidates[:int(os.getenv("NEWS_MAX_PER_RUN","8"))]:
-        post=("🎓 <b>"+html.escape(title[:350])+"</b>\\n\\n"+
-          (html.escape(summary[:650])+"\\n\\n" if summary else "")+
-          "📰 منبع: "+html.escape(name[:100])+"\\n🔗 <a href=\\""+html.escape(url,quote=True)+"\\">متن خبر</a>"+
-          "\\n\\n🤖 پایشگر اخبار آموزش‌وپرورش")
+        post=("🎓 <b>"+html.escape(title[:350])+"</b>\n\n"+
+          (html.escape(summary[:650])+"\n\n" if summary else "")+
+          "📰 منبع: "+html.escape(name[:100])+"\n🔗 <a href=\""+html.escape(url,quote=True)+"\">متن خبر</a>"+
+          "\n\n🤖 پایشگر اخبار آموزش‌وپرورش")
         if PUBLISH:
             try: send(post); remember(item_id,title,url,1); log.info("Published: %s",title)
             except Exception: log.exception("Telegram publish failed: %s",title)
