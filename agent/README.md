@@ -47,3 +47,21 @@ curl -X POST http://127.0.0.1:8000/plan \
 - Destructive operations, handling private student information, public
   communications, and production credential changes require explicit approval.
 - Log task IDs and outcomes, but never log API keys or authorization headers.
+
+
+## Shad worker scaffold (disabled)
+
+A separate `shad_worker.py` preflight process is included in the container.
+It is intentionally fail-closed:
+
+- `SHAD_ENABLED=false` by default.
+- `SHAD_DRY_RUN=true` and `SHAD_AUTO_REPLY=false` by default.
+- It does not authenticate, poll Shad, read messages, or send messages.
+- It refuses live operation until a controlled test verifies that the
+  library's update cursor excludes all messages sent before activation.
+
+For a separate background-worker service, use the same Docker image and
+override its start command to `python shad_worker.py`. Do not deploy it as a
+live integration yet. Mount any future session directory as a private secret
+volume outside the repository; never put session files in environment values
+or GitHub.
